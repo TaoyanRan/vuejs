@@ -7,9 +7,23 @@
 
       <div class="footer articleInfoFooter">
         <button class="button">说点什么吧</button>
-        <button class="button">评论</button>
+        <button class="button" @click="open('bottom')">评论</button>
         <button class="button">收藏</button>
       </div>
+
+        <mu-popup position="bottom" popupClass="demo-popup-bottom" :open="bottomPopup" @close="close('bottom')">
+
+            <mu-appbar title="详情">
+                <mu-flat-button slot="right" label="关闭" color="white" @click="close('bottom')"/>
+            </mu-appbar>
+
+            <mu-content-block>
+                <div class="popModel">
+                    <commentList :articleInfo="articleInfo"></commentList>
+                </div>
+            </mu-content-block>
+
+        </mu-popup>
 
     </div>
 
@@ -17,14 +31,27 @@
 
 
 <script>
+    import commentList from '@/components/commensList.vue'
     export default{
         name: "",
-        components: {},
+        components: {
+            commentList
+        },
         data () {
-            return {}
+            return {
+                bottomPopup: false
+            }
         },
         props: ['articleInfo'],
-        methods: {}
+        methods: {
+            open (position,articleID) {
+                this[position + 'Popup'] = true
+                let that = this
+            },
+            close (position) {
+                this[position + 'Popup'] = false
+            }
+        }
     }
 
 </script>
@@ -63,4 +90,5 @@
     width: 50%;
     background: #ecece4;
   }
+
 </style>
