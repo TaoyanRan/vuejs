@@ -41,3 +41,9 @@ npm test
     - myArticleInfo
 - login.vue
 
+#### 预览
+![主页](https://raw.githubusercontent.com/TaoyanRan/vuejs/master/preview/home.gif)
+![消息](https://raw.githubusercontent.com/TaoyanRan/vuejs/master/preview/message.gif)
+
+![我的](https://raw.githubusercontent.com/TaoyanRan/vuejs/master/preview/my.gif)
+![登出](https://raw.githubusercontent.com/TaoyanRan/vuejs/master/preview/logout.gif)
