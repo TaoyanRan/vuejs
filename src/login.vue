@@ -24,7 +24,7 @@
         },
         data () {
             return {
-              accessTokenStr: '',
+              accessTokenStr: 'f7fe10bd-e23d-470a-9e40-2e5e992e93ae',
               toast: false
             }
         },
