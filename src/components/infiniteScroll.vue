@@ -111,10 +111,13 @@
         }, 2000)*/
       },
       open (position,articleID) {
-        this[position + 'Popup'] = true
-        let that = this
-        axios.get('https://www.vue-js.com/api/v1/topic/'+articleID).then(function (response) {
-          that.articleInfo = response.data.data
+        this[position + 'Popup'] = true;
+        let that = this;
+        that.$store.commit('getArticleInfo',{
+            id: articleID,
+            callback: function (data) {
+            that.articleInfo = data
+            }
         })
       },
       close (position) {

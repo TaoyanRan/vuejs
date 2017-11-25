@@ -51,9 +51,12 @@
           open (position,articleID) {
             this[position + 'Popup'] = true
             let that = this
-            axios.get('https://www.vue-js.com/api/v1/topic/'+articleID).then(function (response) {
-              that.articleInfo = response.data.data
-              console.log(that.articleInfo)
+            /* 根据文章id查询文章详情 */
+            that.$store.commit('getArticleInfo',{
+              id: articleID,
+              callback: function (data) {
+                that.articleInfo = data
+              }
             })
           },
           close (position) {

@@ -11,10 +11,7 @@
       </mu-tabs>
     </div>
     <div class="container">
-      <div class="container">
-        <!--<customScroll :article="article"></customScroll>-->
-        <articleList :article="article"></articleList>
-      </div>
+      <articleList :article="article"></articleList>
     </div>
   </div>
 </template>
@@ -37,19 +34,24 @@
       articleList
     },
     mounted () {
-      let that = this
-      that.$store.path = '/'
-      that.$store.commit('hideLogin')
-      axios.get('https://www.vue-js.com/api/v1/topics').then(function (response) {
-        that.article = response.data.data
+      let that = this;
+      that.$store.path = '/';
+      that.$store.commit('hideLogin');
+      /* 获取主题列表 */
+      that.$store.commit('getTopics',function (data) {
+          that.article = data
       })
     },
     methods: {
       handleTabChange (val) {
-        this.activeTab = val
-        let that = this
-        axios.get('https://www.vue-js.com/api/v1/topics?tab='+val).then(function (response) {
-          that.article = response.data.data
+        let that = this;
+        that.activeTab = val;
+        /* 分类获取主题列表 */
+        that.$store.commit('getTopicsTab',{
+            val: val,
+            callback: function (data) {
+                that.article = data
+            }
         })
       }
     }
@@ -68,6 +70,4 @@
     z-index: 1;
     right:0;
   }
-
-
 </style>

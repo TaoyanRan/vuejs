@@ -40,7 +40,6 @@
 
                 that.$store.commit('login',response.data)
                 that.$store.state.user.accessToken = that.accessTokenStr
-
                 that.$store.commit('getUserInfo',response.data.loginname)
 
 

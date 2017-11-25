@@ -15,16 +15,11 @@ const store = new Vuex.Store({
       avatar_url: '',
       accessToken: ''
     },
-    userInfo: {
-
-    }
+    userInfo: { /*用户详情*/}
   },
   mutations: {
     // 初始化
-    init(state){
-
-    }
-    ,
+    init(state){},
     // 登陆
     login(state,userInfo){
       state.user = userInfo
@@ -46,22 +41,29 @@ const store = new Vuex.Store({
     },
     // 获取用户详情
     getUserInfo(state,loginname){
-
       axios.get('https://www.vue-js.com/api/v1/user/'+loginname).then(function (response) {
         state.userInfo = response.data.data
       })
-
+    },
+    // 主题首页 获取主题列表
+    getTopics(state,setArticlesData){
+      axios.get('https://www.vue-js.com/api/v1/topics').then(function (response) {
+          setArticlesData(response.data.data);
+      })
+    },
+    // 主题首页 按分类获取
+    getTopicsTab(state,data){
+      axios.get('https://www.vue-js.com/api/v1/topics?tab='+data.val).then(function (response) {
+        data.callback(response.data.data);
+      })
+    },
+    // 根据ID获取文章详情
+    getArticleInfo(state,data){
+        axios.get('https://www.vue-js.com/api/v1/topic/' + data.id).then(function (response) {
+            data.callback(response.data.data)
+        })
     }
-
-
-
-
-
-
-
-
   }
-
 })
 
 export default store

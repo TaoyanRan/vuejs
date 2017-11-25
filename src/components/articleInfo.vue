@@ -45,7 +45,7 @@
         props: ['articleInfo'],
         methods: {
             open (position,articleID) {
-                this[position + 'Popup'] = true
+                this[position + 'Popup'] = true;
                 let that = this
             },
             close (position) {
